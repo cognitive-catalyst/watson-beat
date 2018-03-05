@@ -19,10 +19,7 @@ class PopFunk :
 
         self.rhythmSpeed = movement['rhythmSpeed'] 
         self.selectedTempo = selectedTempo
-        print ( "Selected tempo: ", selectedTempo ) 
-        if ( 0 ) : 
-            print ( "Mood: Pop Funk -- Kinky Boots" ) 
-            print ( 'Complexity: ', self.complexity ) 
+        print ( "Selected tempo: ", selectedTempo )
 
         self.percussionDesc = ['drumsKit' ] 
 

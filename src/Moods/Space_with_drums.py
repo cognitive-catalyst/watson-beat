@@ -19,9 +19,6 @@ class Space_with_drums :
         self.durationInSecs = movement['duration'] 
         self.rhythmSpeed = movement['rhythmSpeed']
         self.selectedTempo = selectedTempo 
-        if ( 0 ) : 
-            print ( "Mood: Pop Funk -- Kinky Boots" ) 
-            print ( 'Complexity: ', self.complexity ) 
 
 
         self.groupLayers = {

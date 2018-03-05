@@ -18,10 +18,7 @@ class Space :
         self.complexity = movement['complexity'] 
         self.durationInSecs = movement['duration'] 
         self.rhythmSpeed = movement['rhythmSpeed']
-        self.selectedTempo = selectedTempo 
-        if ( 0 ) : 
-            print ( "Mood: Pop Funk -- Kinky Boots" ) 
-            print ( 'Complexity: ', self.complexity ) 
+        self.selectedTempo = selectedTempo
 
 
         self.groupLayers = {
