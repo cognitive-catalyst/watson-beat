@@ -12,7 +12,7 @@ Inputs
 Outputs
 -------
  - Several layers of music in midi format that Watson created using your input
-   as inspiriation
+   as inspiration
 
 Getting Started
 ===============
@@ -23,7 +23,7 @@ and a basic familiarity with `git`.
 Set you machine up for dev - if you are a first timer!
 ------------------------------------------------------
 [Here are some directions to get your machine set up to run code](./initial_setup.md), or 
-just google it!  You will also need to copy this code repository to your computer, 
+just google it!  You will also need to copy this code repository to your computer. 
 
 Use Git
 -------
