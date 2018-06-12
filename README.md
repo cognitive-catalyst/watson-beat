@@ -20,7 +20,7 @@ This repo, is all the code for the The Watson Beat.  It all runs locally using
 the terminal.  To run it, there are a few things you need set up on your local computer first, like python 🐍!,
 and a basic familiarity with `git`.
 
-Set you machine up for dev - if you are a first timer!
+Set your machine up for dev - if you are a first timer!
 ------------------------------------------------------
 [Here are some directions to get your machine set up to run code](./initial_setup.md), or 
 just google it!  You will also need to copy this code repository to your computer. 
