@@ -85,7 +85,7 @@ parameters you pass it. To get help, just pass it the `-h` flag:
 
 `python wbDev.py -h`
 
-If you pass it no paramaters, 
+If you pass it no parameters, 
 
 `python wbDev.py`
 
