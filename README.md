@@ -123,3 +123,5 @@ See [LICENSE.txt](./LICENSE.txt)
 ###### Original Authors: Janani Mukundan, Jeremy Hodge, and Richard Daskas 
 ###### Assign Pull Requests to: amchaney
 
+### Special note on running on Windows : you will also need to install [cygwin](https://www.cygwin.com/) as environment to run the code on. All development/testing of this code was done in *nix systems, and there is something different about the Windows shell so you need a *nix bash script emulator (which is what cygwin is). 
+
