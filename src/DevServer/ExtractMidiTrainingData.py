@@ -22,28 +22,28 @@ class MidiTrainingData :
         #self.printTracks() 
         #sys.exit(0) 
         
-    def removeOverlaps ( self ) : 
-        
+    def removeOverlaps ( self ) :
+
         trackName = 'melody'
         trackName = 'other'
-        lastItem = self.Tracks[trackName][1].keys()[-1] 
+        lastItem = len(self.Tracks[trackName][1].keys())
 
-        for item in range(lastItem) : 
-            if item in self.Tracks[trackName][1] : 
-                
+        for item in range(len(self.Tracks[trackName][1].keys())):
+            if item in self.Tracks[trackName][1] :
+
                 s1 = self.Tracks[trackName][1][item]['Clk'][0]
                 e1 = self.Tracks[trackName][1][item]['Clk'][1]
 
-                for nextItem in range ( item+1, lastItem, 1 ) : 
-                    
-                    if nextItem in self.Tracks[trackName][1] : 
+                for nextItem in range ( item+1, lastItem, 1 ) :
+
+                    if nextItem in self.Tracks[trackName][1] :
 
                         s2 = self.Tracks[trackName][1][nextItem]['Clk'][0]
                         e2 = self.Tracks[trackName][1][nextItem]['Clk'][1]
 
-                        if ( s1 < e2 and ( (e1-s2) > 100 ) )  : 
-                             print ( "Overlap found between: " ,item, nextItem, self.Tracks[trackName][1][item] , self.Tracks[trackName][1][nextItem] ) 
-                             print() 
+                        if ( s1 < e2 and ( (e1-s2) > 100 ) )  :
+                             print ( "Overlap found between: " ,item, nextItem, self.Tracks[trackName][1][item] , self.Tracks[trackName][1][nextItem] )
+                             print()
                              del self.Tracks[trackName][1][nextItem]
 
 
