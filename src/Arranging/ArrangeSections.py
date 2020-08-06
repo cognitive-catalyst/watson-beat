@@ -7,11 +7,11 @@ import CreateMidiEventsForBass
 
 class ArrangeSections : 
 
-    def __init__ ( self, id, movement, outdir ) : 
+    def __init__ ( self, id, movement, outdir , oneMidiPerLayer) : 
         self.id = id
         self.movement = movement
         self.outdir   = outdir
-
+        self.oneMidiPerLayer = oneMidiPerLayer
         
     def arrange ( self ) : 
 
@@ -40,7 +40,7 @@ class ArrangeSections :
 
 
         self.midiEventsForSectionLayers = collections.OrderedDict() 
-
+        
 
         sectionsObj = self.movement['SectionsObj'].mood
         for secId in sectionsObj.sections : 
@@ -193,12 +193,18 @@ class ArrangeSections :
                         self.midiEventsForSectionLayers[secId][layer] += CreateMidiEventsForBass.CreateMidiEventsForStrings ( layer, uniqCPId, secId, phId, repCount, numChordsInSection, sectionsObj.sections[secId]['phrases'][phId], self.movement['layers'][uniqCPId][layer] )  
 
 
-
+        self.midiEventsForLayers = collections.OrderedDict()
+        for secId in self.midiEventsForSectionLayers :
+            for layer in self.midiEventsForSectionLayers[secId] : 
+                #print("Layer: ",layer,"len: ",len(self.midiEventsForLayers))
+                if (self.midiEventsForLayers.get(layer,"0") == "0" ) :
+                    #print(layer)
+                    self.midiEventsForLayers[layer] = []
+ 
         for secId in self.midiEventsForSectionLayers : 
             for layer in self.midiEventsForSectionLayers[secId] : 
-
-                CreateMidiEventsForBass.CreateMidiFileForBass ( self.id, secId, layer, self.midiEventsForSectionLayers[secId][layer], self.outdir ) 
-
+                self.midiEventsForLayers[layer].extend(self.midiEventsForSectionLayers[secId][layer])
+                
                 #if ( layer == 'bass1' or layer == 'bass2'  or layer == 'mel5' or layer == 'piano1' or layer == 'rhythmChords' ) : 
                 #    CreateMidiEventsForBass.CreateMidiFileForBass ( self.id, secId, layer, self.midiEventsForSectionLayers[secId][layer] ) 
                     
@@ -207,5 +213,23 @@ class ArrangeSections :
                     for ev in self.midiEventsForSectionLayers[secId][layer] : 
                         print ( ev ) 
                     print() 
+        if self.oneMidiPerLayer:
+            for layer in self.midiEventsForLayers :
+                CreateMidiEventsForBass.CreateMidiFileForBass ( self.id, 1, layer, self.midiEventsForLayers[layer], self.outdir ) 
+        else:
+            for secId in self.midiEventsForSectionLayers : 
+                for layer in self.midiEventsForSectionLayers[secId] : 
+
+                    CreateMidiEventsForBass.CreateMidiFileForBass ( self.id, secId, layer, self.midiEventsForSectionLayers[secId][layer], self.outdir ) 
+
+                    #if ( layer == 'bass1' or layer == 'bass2'  or layer == 'mel5' or layer == 'piano1' or layer == 'rhythmChords' ) : 
+                    #    CreateMidiEventsForBass.CreateMidiFileForBass ( self.id, secId, layer, self.midiEventsForSectionLayers[secId][layer] ) 
+                    
+                    if ( 0 and layer.startswith('mel5High') ) : 
+                        print ( "Section: ", secId, "Layer: ", layer ) 
+                        for ev in self.midiEventsForSectionLayers[secId][layer] : 
+                            print ( ev ) 
+                        print() 
+
 
             
