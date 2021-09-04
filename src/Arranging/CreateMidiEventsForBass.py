@@ -402,6 +402,7 @@ def CreateMidiFileForBass ( mvNum, secId, layer, midiEvents, outdir ) :
 
     foutName = outdir + "WB_Mvmt" + str(mvNum) + "_Sec" + str(secId) + "_" + layer 
     fout = open ( foutName + ".py", mode='w' ) 
+    print("ouput " + foutName)
         
     
     WriteInitialMidiFileSequence ( fout ) 
@@ -449,11 +450,11 @@ def WriteFinalMidiFileSequence (  fout, foutName ) :
     fout.write ( "\nmidi.write_midifile(\"%s\", pattern)" %(foutMidiName) ) ;
     fout.close() ;
         
-    #print ( "\nOutput midi file: %s\n" %(foutMidiName) ) ;
+    print ( "\nOutput midi file: %s\n" %(foutMidiName) ) ;
     call = "python " + foutName + ".py"  ; 
     os.system ( call ) ;
-    call = "rm " + foutName + ".py"  ; 
-    os.system ( call ) ;
+    #call = "rm " + foutName + ".py"  ; 
+    #os.system ( call ) ;
     
 
 def WriteInitialMidiFileSequence (  fout ) : 

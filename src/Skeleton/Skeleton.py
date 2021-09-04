@@ -19,12 +19,13 @@ import DevServer.Server
 class Template : 
 
 
-    def __init__ ( self, iniFname, midiFilePath, outDir ) : 
+    def __init__ ( self, iniFname, midiFilePath, outDir,oneMidiPerLayer) : 
  
         self.tempo = None           
         self.midiFilePath = midiFilePath
         self.outDir = outDir
         self.ReadIniFile ( iniFname ) 
+        self.oneMidiPerLayer = oneMidiPerLayer
 
         #Initialize mood and sections
         for mvNum in self.movements : 
@@ -374,7 +375,7 @@ class Template :
                 self.movements[mvNum]['layers'][uniqCPId] = section.run () 
 
                 
-            arrangeSections = ArrangeSections ( mvNum, self.movements[mvNum], self.outDir ) 
+            arrangeSections = ArrangeSections ( mvNum, self.movements[mvNum], self.outDir ,self.oneMidiPerLayer) 
             arrangeSections.arrange() 
 
 
@@ -454,7 +455,7 @@ def usage() :
 
 def run () : 
 
-
+    print("in skeleton")
     parser = argparse.ArgumentParser()
 
     parser.add_argument('-i', action='store',
@@ -472,11 +473,13 @@ def run () :
                         default='./output/',
                         help='Output File Path')
 
+    parser.add_argument('-l', action='store_true',
+                        dest='oneMidiPerLayer',
+                        help="One midi per layer"  ) 
 
     parser.add_argument('-u', action='store_true',
                         dest='usage',
-                        help="usage"  ) 
-    
+                        help="usage"  )
     
     results = parser.parse_args()
 
@@ -499,6 +502,7 @@ def run () :
     print('iniFile          = {!r}'.format(results.iniFile ))
     print('midiFile         = {!r}'.format(results.midiFilePath ))
     print('outputDir        = {!r}'.format(results.outputFilePath ))
+    print('layerpermidi        = {!r}'.format(results.oneMidiPerLayer ))
 
 
     rmCmd = "rm -rf {}/WB*.mid {}/WB*.py".format( results.outputFilePath, results.outputFilePath ) 
@@ -506,7 +510,7 @@ def run () :
 
     #random.seed ( 10 )
 
-    skeleton = Template( results.iniFile, results.midiFilePath, results.outputFilePath ) 
+    skeleton = Template( results.iniFile, results.midiFilePath, results.outputFilePath,results.oneMidiPerLayer) 
 
 
 
